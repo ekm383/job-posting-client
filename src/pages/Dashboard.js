@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { auth } from "../components/firebase/Firebase";
 import { signOut } from "@firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { getAllJobs } from "../functions/jobs";
 
 const Dashboard = () => {
   // Hooks
@@ -11,6 +12,15 @@ const Dashboard = () => {
 
   // Redux
   let dispatch = useDispatch();
+
+  // state
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    return getAllJobs().then((res) => {
+      setJobs([res.data]);
+    });
+  }, []);
 
   const logout = () => {
     signOut(auth)
@@ -32,6 +42,16 @@ const Dashboard = () => {
       <button className='logout-button' onClick={logout}>
         Logout
       </button>
+      {/* {console.log(jobs)} */}
+      {jobs.map((job) => (
+        <div key={job._id}>
+          <h1>{job.title}</h1>
+          <p>{job.company}</p>
+          <p>{job.location}</p>
+          <p>{job.salary}</p>
+          <p>{job.description}</p>
+        </div>
+      ))}
     </div>
   );
 };
