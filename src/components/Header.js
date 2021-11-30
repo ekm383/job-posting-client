@@ -45,8 +45,8 @@ const Header = () => {
             <NavLink className='nav-link' to='/jobs'>
               View Jobs
             </NavLink>
-            <NavLink className='nav-link' to='/post'>
-              Post Job
+            <NavLink className='nav-link' to='/create-job'>
+              Create Job
             </NavLink>
             <p className='nav-link'>
               <FaUserCircle className='icon' />

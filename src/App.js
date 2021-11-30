@@ -19,10 +19,10 @@ import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import Dashboard from "./pages/Dashboard";
 import Error from "./pages/Error";
-import JobDetail from "./pages/JobDetail";
-import Post from "./pages/Post";
+import JobCreate from "./pages/JobCreate";
 import Home from "./pages/Index";
-import Jobs from "./pages/Jobs";
+import JobsAll from "./pages/JobsAll";
+import JobUpdate from "./pages/JobUpdate";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -70,13 +70,17 @@ const App = () => {
             <Route exact element={<ForgotPassword />} path='/forgot/password' />
             <Route exact element={<Home />} path='/' />
             <Route exact path='/jobs' element={<UserRoute />}>
-              <Route exact path='/jobs' element={<Jobs />} />
+              <Route exact path='/jobs' element={<JobsAll />} />
             </Route>
             <Route exact path='/dashboard' element={<UserRoute />}>
               <Route exact path='/dashboard' element={<Dashboard />} />
             </Route>
-            <Route exact element={<JobDetail />} path='/jobdetail' />
-            <Route exact element={<Post />} path='/post' />
+            <Route exact path='/create-job' element={<UserRoute />}>
+              <Route exact path='/create-job' element={<JobCreate />} />
+            </Route>
+            <Route exact path='/user/job/:slug' element={<UserRoute />}>
+              <Route exact path='/user/job/:slug' element={<JobUpdate />} />
+            </Route>
             <Route path='*' element={<Error />} />
           </Routes>
         </div>
