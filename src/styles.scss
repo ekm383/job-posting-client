@@ -1,28 +1,28 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: roboto;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: roboto;
 }
 
 body {
-  padding: 0px;
+	padding: 0px;
 }
 
 .Error {
-  text-align: center;
+	text-align: center;
 }
 
 :root {
-  --primary: #4d7ce9;
-  --secondary: #55b1ec;
-  --darkGray: #5e5e5e;
-  --lightGray: #acacac;
-  --white: #ffffff;
-  --black: #000000;
+	--primary: #4d7ce9;
+	--secondary: #55b1ec;
+	--darkGray: #5e5e5e;
+	--lightGray: #acacac;
+	--white: #ffffff;
+	--black: #000000;
 }
 
 a {
-  text-decoration: none;
-  color: white;
+	text-decoration: none;
+	color: lightgrey;
 }
