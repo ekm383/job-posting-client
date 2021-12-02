@@ -24,5 +24,31 @@ body {
 
 a {
 	text-decoration: none;
+	color: white;
+}
+
+#root
+	> div
+	> div.main-content
+	> div.sc-gKclnd.hRtnAf
+	> div:nth-child(2)
+	> div
+	> form
+	> div.submit-container
+	> div
+	> a:nth-child(1) {
+	color: lightgrey;
+}
+
+#root
+	> div
+	> div.main-content
+	> div.sc-gKclnd.hRtnAf
+	> div:nth-child(2)
+	> div
+	> form
+	> div.submit-container
+	> div
+	> a:nth-child(2) {
 	color: lightgrey;
 }
