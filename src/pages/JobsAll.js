@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAllJobs } from "../functions/jobs";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,6 +12,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Pagination from "@material-ui/lab/Pagination";
+import TextField from "@material-ui/core/TextField";
+import { FormControl } from "@material-ui/core";
 
 const useStyles = makeStyles({
 	container: {
@@ -24,6 +27,12 @@ const useStyles = makeStyles({
 		boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
 		border: "none",
 		padding: "1rem",
+	},
+	searchContainer: {
+		marginBottom: "2rem",
+	},
+	formControl: {
+		width: "300px",
 	},
 });
 
@@ -54,6 +63,22 @@ const JobsAll = () => {
 
 	return (
 		<StyledDashboard>
+			<div className={classes.searchContainer}>
+				<form>
+					<FormControl className={classes.formControl}>
+						<TextField
+							type="text"
+							label="search jobs"
+							name="search"
+							className="form-control"
+							value=""
+						/>
+					</FormControl>
+					<Button variant="contained" color="primary">
+						Search
+					</Button>
+				</form>
+			</div>
 			<div className={classes.container}>
 				{jobs &&
 					jobs
@@ -92,7 +117,12 @@ const JobsAll = () => {
 										variant="contained"
 										color="primary"
 									>
-										Details
+										<Link
+											to={`/job/details/${job.slug}`}
+											className={classes.link}
+										>
+											Details
+										</Link>
 									</Button>
 								</CardActions>
 							</Card>

@@ -23,70 +23,96 @@ import JobCreate from "./pages/JobCreate";
 import Home from "./pages/Index";
 import JobsAll from "./pages/JobsAll";
 import JobUpdate from "./pages/JobUpdate";
+import JobDetails from "./pages/JobDetails";
 
 const App = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  // Check Firebase Auth State
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const idTokenResult = await user.getIdTokenResult();
+	// Check Firebase Auth State
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(auth, async (user) => {
+			if (user) {
+				const idTokenResult = await user.getIdTokenResult();
 
-        // Persist Token in DB
-        currentUser(idTokenResult.token)
-          .then((res) => {
-            dispatch({
-              type: "LOGGED_IN_USER",
-              payload: {
-                name: res.data.name,
-                email: res.data.email,
-                token: idTokenResult.token,
-                role: res.data.role,
-                _id: res.data._id,
-              },
-            });
-          })
-          .catch((err) => console.log(err));
-      }
-    });
-    // Clean Up
-    return () => unsubscribe();
-  }, [dispatch]);
+				// Persist Token in DB
+				currentUser(idTokenResult.token)
+					.then((res) => {
+						dispatch({
+							type: "LOGGED_IN_USER",
+							payload: {
+								name: res.data.name,
+								email: res.data.email,
+								token: idTokenResult.token,
+								role: res.data.role,
+								_id: res.data._id,
+							},
+						});
+					})
+					.catch((err) => console.log(err));
+			}
+		});
+		// Clean Up
+		return () => unsubscribe();
+	}, [dispatch]);
 
-  return (
-    <React.StrictMode>
-      <div className='container'>
-        <Header />
-        <div className='main-content'>
-          <ToastContainer />
-          <Routes>
-            <Route exact element={<Register />} path='/register' />
-            <Route
-              exact
-              element={<RegisterComplete />}
-              path='/register/complete'
-            />
-            <Route exact element={<ForgotPassword />} path='/forgot/password' />
-            <Route exact element={<Home />} path='/' />
-            <Route exact path='/jobs' element={<UserRoute />}>
-              <Route exact path='/jobs' element={<JobsAll />} />
-            </Route>
-            <Route exact path='/dashboard' element={<UserRoute />}>
-              <Route exact path='/dashboard' element={<Dashboard />} />
-            </Route>
-            <Route exact path='/create-job' element={<UserRoute />}>
-              <Route exact path='/create-job' element={<JobCreate />} />
-            </Route>
-            <Route exact path='/user/job/:slug' element={<UserRoute />}>
-              <Route exact path='/user/job/:slug' element={<JobUpdate />} />
-            </Route>
-            <Route path='*' element={<Error />} />
-          </Routes>
-        </div>
-      </div>
-    </React.StrictMode>
-  );
+	return (
+		<React.StrictMode>
+			<div className="container">
+				<Header />
+				<div className="main-content">
+					<ToastContainer />
+					<Routes>
+						<Route exact element={<Register />} path="/register" />
+						<Route
+							exact
+							element={<RegisterComplete />}
+							path="/register/complete"
+						/>
+						<Route
+							exact
+							element={<ForgotPassword />}
+							path="/forgot/password"
+						/>
+						<Route exact element={<Home />} path="/" />
+						<Route exact path="/jobs" element={<UserRoute />}>
+							<Route exact path="/jobs" element={<JobsAll />} />
+						</Route>
+						<Route exact path="/dashboard" element={<UserRoute />}>
+							<Route
+								exact
+								path="/dashboard"
+								element={<Dashboard />}
+							/>
+						</Route>
+						<Route exact path="/create-job" element={<UserRoute />}>
+							<Route
+								exact
+								path="/create-job"
+								element={<JobCreate />}
+							/>
+						</Route>
+						<Route
+							exact
+							path="/user/job/:slug"
+							element={<UserRoute />}
+						>
+							<Route
+								exact
+								path="/user/job/:slug"
+								element={<JobUpdate />}
+							/>
+						</Route>
+						<Route
+							exact
+							path="/job/details/:slug"
+							element={<JobDetails />}
+						/>
+						<Route path="*" element={<Error />} />
+					</Routes>
+				</div>
+			</div>
+		</React.StrictMode>
+	);
 };
 
 export default App;
