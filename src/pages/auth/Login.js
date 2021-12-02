@@ -36,9 +36,11 @@ const Login = () => {
   let dispatch = useDispatch();
   let navigate = useNavigate();
 
-  // Hide access if already logged in
   const { user } = useSelector((state) => ({ ...state }));
 
+  /**
+   * If user has a token in Redux navigate to Dashboard
+   */
   useEffect(() => {
     if (user && user.token) navigate("/dashboard");
   }, [user, navigate]);
@@ -48,8 +50,10 @@ const Login = () => {
     setLoading(true);
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
+      console.log(result);
       const { user } = result;
       const idTokenResult = await user.getIdTokenResult();
+      console.log(idTokenResult);
 
       createOrUpdateUser(idTokenResult.token)
         .then((res) => {
