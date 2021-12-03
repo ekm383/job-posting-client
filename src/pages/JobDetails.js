@@ -58,7 +58,7 @@ const JobDetails = () => {
 		getJob(slug).then((p) => {
 			setValues({ ...values, ...p.data });
 		});
-	}, []);
+	}, [slug, values]);
 
 	return (
 		<StyledDashboard>

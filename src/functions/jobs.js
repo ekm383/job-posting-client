@@ -37,7 +37,3 @@ export const updateJob = async (slug, job, authToken) => {
 		headers: { authToken },
 	});
 };
-
-// export const getJobDetails = async (slug) => {
-// 	return await axios.get(`${process.env.REACT_APP_API}/job/details/${slug}`);
-// };
