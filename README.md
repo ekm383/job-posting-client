@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+Contributors: Gareth Nakamurahee.jenna@gmail.comEric Manongdo
+JOB POSTING DESIGN DOCUMENT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+BRIEF:
+The goal of this document is to highlight the core functionality of the Job Posting web application. Users can register, create posts, delete posts, and update posts through protected routes. Public users can view the landing page and register new accounts.
 
-## Available Scripts
+TOOLS:
 
-In the project directory, you can run:
+- Authentication: Firebase
 
-### `npm start`
+  - Firebase Authentication provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app. It supports authentication using passwords, phone numbers, popular federated identity providers like Google, Facebook and Twitter, and more.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Database: MongoDB Atlas
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  - MongoDB Atlas is a multi-cloud database service by the same people that build MongoDB. Atlas simplifies deploying and managing your databases while offering the versatility you need to build resilient and performant global applications on the cloud providers of your choice.
 
-### `npm test`
+- Middleware: Node/Express
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - Node.js is an open source server environment that can generate dynamic page content, create, open, red, write, delete, and close files on the server, collect data, and also add, delete, and modify data in the database
+  - Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 
-### `npm run build`
+- Frontend: React
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - React is a Javascript library for building user interfaces
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- State Management: Redux
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  - Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. On top of that, it provides a great developer experience, such as live code editing combined with a time traveling debugger.
 
-### `npm run eject`
+- Forms: Material UI
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  - Material-UI is a library that allows us to import and use different components to create a user interface in our React applications.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Stylesheet: styled-components
+  - Styled-components is a library built for React and React Native developers. It allows you to use component-level styles in your applications. Styled-components leverage a mixture of JavaScript and CSS using a technique called CSS-in-JS.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+API FUNCTION - AUTHENTICATION:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+createOrUpdateUser()
+Param: authToken from Firebase response
+Resquest: authToken to validate if user is already in database, if not, create user
+Response: Send back user object with info and store in redux
 
-## Learn More
+currentUser()
+Param: authToken
+Request: authToken to persist logged in users credentials in database
+Response: Send back user object with info and store in redux
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+API FUNCTION - JOBS:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+getAllJobs()
+Param: authToken
+Request: Send Headers
+Response: Get all jobs from all users
 
-### Code Splitting
+getUsersJob()
+Param: authToken
+Request: Send Headers
+Response: Get all the jobs created by logged in user
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+createJobs()
+Param: jobs object, authToken
+Request: Post new job to database
+Response: Return successful message and new job
 
-### Analyzing the Bundle Size
+removeJob()
+Param: slug, authToken
+Request: Delete job from database based on matching slug
+Response: Return successful response code
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+getJob()
+Param: slug, authToken
+Request: Send Headers with Slug
+Response: Get complete job document based on matching slug
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+updateJob()
+Param: slug, job object, authToken
+Request: Update job based on slug with updated KVP’s in the database
+Response: Return successful response code
