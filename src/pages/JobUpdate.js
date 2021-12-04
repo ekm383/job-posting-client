@@ -27,10 +27,10 @@ const JobUpdate = () => {
 	//console.log(slug);
 
 	useEffect(() => {
-		getJob(slug).then((p) => {
+		getJob(slug, user.token).then((p) => {
 			setValues({ ...values, ...p.data });
 		});
-	}, [slug, values]);
+	}, []);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();

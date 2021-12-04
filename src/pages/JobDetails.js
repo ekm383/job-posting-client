@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getJob } from "../functions/jobs";
 import styled from "styled-components";
 
@@ -46,19 +46,18 @@ const JobDetails = () => {
 	// state
 	const [values, setValues] = useState(initialState);
 
-	// const { user } = useSelector((state) => ({ ...state }));
+	const { user } = useSelector((state) => ({ ...state }));
 
 	const params = useParams();
-	// console.log(params);
-	// const navigate = useNavigate();
 
 	const { slug } = params;
+	console.log(params);
 
 	useEffect(() => {
-		getJob(slug).then((p) => {
+		getJob(slug, user.token).then((p) => {
 			setValues({ ...values, ...p.data });
 		});
-	}, [slug, values]);
+	}, []);
 
 	return (
 		<StyledDashboard>
