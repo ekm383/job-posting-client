@@ -77,3 +77,21 @@ updateJob()
 Param: slug, job object, authToken
 Request: Update job based on slug with updated KVP’s in the database
 Response: Return successful response code
+
+FLOW:
+
+- App.js (client-side)
+  Set user state in Redux to be persisted throughout app
+  Set up all page routes based on location and user authorization if required to access page, and renders the specified component
+
+- React Components (client-side)
+  Access user state from Redux
+  Use React hooks to create and manage states within component
+  Use API functions imported from the “functions” directory to make http requests to backend server through Axios
+
+- Express
+  Uses Express to handle incoming http requests and routing
+  Uses express routing (defined in “routes” directory) to set up routes and execute middleware authentication (authCheck) and request handlers
+  Request handler functions (defined in “controllers” directory) access MongoDB database and perform CRUD operations, then sends data as response to frontend to be used in React component
+
+React component receives response from server and executes any code, then returns html with populated data to be rendered in App.js
