@@ -38,7 +38,7 @@ const initialState = {
   location: "",
   salary: "",
   description: "",
-  contactInfo: "",
+  contactEmail: "",
 };
 
 const JobDetails = () => {
@@ -85,7 +85,7 @@ const JobDetails = () => {
             <Divider light />
             <br />
             <Typography className={classes.subheading}>
-              Please contact {values.contactInfo} to apply
+              Please contact {values.contactEmail} to apply
             </Typography>
           </CardContent>
         </Card>
