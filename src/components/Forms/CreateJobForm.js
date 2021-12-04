@@ -36,7 +36,7 @@ const CreateJobForm = ({ handleSubmit, handleChange, values }) => {
       <FormControl className={classes.formControl}>
         <TextField
           type='text'
-          label='title'
+          label='Title'
           name='title'
           className='form-control'
           variant='outlined'
@@ -47,7 +47,7 @@ const CreateJobForm = ({ handleSubmit, handleChange, values }) => {
       <FormControl className={classes.formControl}>
         <TextField
           type='text'
-          label='company'
+          label='Company'
           name='company'
           className='form-control'
           variant='outlined'
@@ -58,7 +58,7 @@ const CreateJobForm = ({ handleSubmit, handleChange, values }) => {
       <FormControl className={classes.formControl}>
         <TextField
           type='text'
-          label='location'
+          label='Location'
           name='location'
           className='form-control'
           variant='outlined'
@@ -69,7 +69,7 @@ const CreateJobForm = ({ handleSubmit, handleChange, values }) => {
       <FormControl className={classes.formControl}>
         <TextField
           type='number'
-          label='salary'
+          label='Salary'
           name='salary'
           className='form-control'
           variant='outlined'
@@ -80,7 +80,7 @@ const CreateJobForm = ({ handleSubmit, handleChange, values }) => {
       <FormControl className={classes.formControl}>
         <TextField
           type='text'
-          label='description'
+          label='Description'
           name='description'
           className='form-control'
           variant='outlined'
@@ -93,7 +93,7 @@ const CreateJobForm = ({ handleSubmit, handleChange, values }) => {
       <FormControl className={classes.formControl}>
         <TextField
           type='text'
-          label='contactEmail'
+          label='Contact Info'
           name='contactEmail'
           className='form-control'
           variant='outlined'
